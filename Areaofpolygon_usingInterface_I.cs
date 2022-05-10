@@ -52,18 +52,20 @@ namespace CsharpInterface {
     }
   }
 
-  class Program {
+  class PArea {
     static void Main (string [] args) {
         Console.WriteLine("Enter the no of sides:");
-        int n=Convert.ToInt32(Console.ReadLine());
+        int numberOfSidesOfPolygon=Convert.ToInt32(Console.ReadLine());
+        IPolygon ipolygon;
      
-      switch(n)
+      switch(numberOfSidesOfPolygon)
       {
       case 3:
         {
             Console.WriteLine("Enter the  sides of the triangle:  ");
             Triangle t1= new Triangle();
-            t1.calculateArea();
+            ipolygon=(IPolygon)t1;
+           // t1.calculateArea();
             break;
         }
         case 4:
@@ -76,19 +78,21 @@ namespace CsharpInterface {
             {
                 case "square":
                 {
-                    Square s1 = new Square();  
-                    s1.calculateArea();
+                    Square s1 = new Square(); 
+                    ipolygon=(IPolygon)s1;
+                   // s1.calculateArea();
                   break;
                 } 
                 case "rectangle":
                 case "rect":
                 {
                     Rectangle r1 = new Rectangle();  
-                    r1.calculateArea();
+                   ipolygon=(IPolygon)r1;
                   break;
                 }
                 default:
                 {
+                    ipolygon=null;
                     Console.WriteLine("Enter proper polygon name");
                     break;
                 }
@@ -99,13 +103,15 @@ namespace CsharpInterface {
         }
         default: 
         {
+              ipolygon=null;
             Console.WriteLine("Number of sides are less than 2 or more than 5");
             break;
         }
         
         
         
-      }     
+      }  
+      ipolygon.calculateArea();
         
         
         
